@@ -1,26 +1,56 @@
 package com.ll;
+// 문제 : 매개변수를 사용해서 전사가 매번 다르게 공격하도록 해주세요.
 
 public class Main {
     public static void main(String[] args) {
-        무기 a무기 = new 칼();
-        a무기.공격();
-        // 출력 : 칼로 공격합니다.
+        전사 a전사 = new 전사();
+
+        a전사.공격("브라이언", "칼");
+        // 브라이언이(가) 칼(으)로 공격합니다.
+
+        a전사.재공격();
+        // 브라이언이(가) 칼(으)로 공격합니다.
+
+        a전사.공격("필립", "창");
+        // 필립이(가) 창(으)로 공격합니다.
+
+        a전사.공격("마크", "지팡이");
+        // 마크(가) 지팡이(으)로 공격합니다.
     }
 }
 
-class 무기 {
-    void 공격() {
-    } //리모콘의 공격 버튼을 만들기 위한 코드여서 필요함
+class 전사 {
+    String lastName;
+    String lastWeaponName;
 
-      /* 무기 리모콘이 칼을 가리키게 되어 칼은 무기리모콘화로 자동형변환이 이루지는데
-         무기에는 공격버튼이 없기 때문에, 공격 버튼을 추가하지 않으면
-         칼의 공격이 이루어지지 않음
-       */
-}
+    void 공격(String name, String weaponName) {
+        System.out.println(name + "이(가) " + weaponName + "(으)로 공격합니다.");
 
-class 칼 extends 무기 {
-    void 공격() {
-        System.out.println("칼로 공격합니다.");
+        lastName = name;
+        lastWeaponName = weaponName;
     }
-
+    void 재공격() {
+        System.out.println(lastName + "이(가) " + lastWeaponName + "(으)로 공격합니다.");
+    }
 }
+
+/* 중복제거 버전
+class 전사 {
+    String lastName;
+    String lastWeaponName;
+
+    void 공격(String name, String weaponName) {
+        공격문구출력(name, weaponName);
+
+        lastName = name;
+        lastWeaponName = weaponName;
+    }
+    void 공격문구출력(String name, String weaponName) {
+        System.out.println(name + "이(가) " + weaponName + "(으)로 공격합니다.");
+    }
+    void 재공격() {
+        공격문구출력(lastName, lastWeaponName);
+    }
+}
+ */
+
